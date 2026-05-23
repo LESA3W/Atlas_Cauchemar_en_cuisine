@@ -6,6 +6,8 @@ export function formatStatus(status: RestaurantStatus | undefined) {
       return "Ouvert";
     case "closed":
       return "Fermé";
+    case "permanently_closed":
+      return "Définitivement fermé";
     default:
       return "Statut inconnu";
   }

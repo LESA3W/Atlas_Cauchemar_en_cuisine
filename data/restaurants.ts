@@ -5,9 +5,12 @@ import type {
 } from "@/types/restaurant";
 import { restaurantAddressByEpisode } from "@/data/restaurant-addresses";
 import {
+  episodesHiddenFromMap,
   restaurantHoursByEpisode,
   unknownOpeningHours
 } from "@/data/restaurant-hours";
+
+const PERMANENTLY_CLOSED_EPISODES = new Set(episodesHiddenFromMap);
 
 type RawRestaurantSeed = {
   episodeNumber: number;
@@ -520,7 +523,11 @@ export const restaurants: Restaurant[] = rawRestaurants
     const hasOpenHours = openingHours.some(
       (entry) => !entry.closed && entry.hours !== "Horaires inconnus"
     );
-    const status: RestaurantStatus = hasOpenHours ? "open" : "closed";
+    const status: RestaurantStatus = PERMANENTLY_CLOSED_EPISODES.has(seed.episodeNumber)
+      ? "permanently_closed"
+      : hasOpenHours
+        ? "open"
+        : "closed";
 
     return {
       id: `cec-${seed.episodeNumber.toString().padStart(3, "0")}`,

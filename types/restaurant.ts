@@ -1,4 +1,8 @@
-export type RestaurantStatus = "open" | "closed" | "unknown";
+export type RestaurantStatus =
+  | "open"
+  | "closed"
+  | "permanently_closed"
+  | "unknown";
 
 export type OpeningHour = {
   day: string;

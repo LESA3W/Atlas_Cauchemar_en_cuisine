@@ -10,8 +10,13 @@ type RestaurantMarkerProps = {
   onSelect: (restaurant: Restaurant) => void;
 };
 
+function statusClass(status: RestaurantStatus) {
+  if (status === "permanently_closed") return "pin--permanently-closed";
+  return `pin--${status}`;
+}
+
 function buildIcon(status: RestaurantStatus, selected: boolean, episodeNumber: number) {
-  const modifier = `pin--${status}${selected ? " pin--selected" : ""}`;
+  const modifier = `${statusClass(status)}${selected ? " pin--selected" : ""}`;
   const label = String(episodeNumber);
 
   return divIcon({

@@ -324,19 +324,25 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .pin--open .pin-body {
-  fill: var(--color-rouge);
+  fill: var(--color-or);
   stroke: #ffffff;
   stroke-width: 1.5;
 }
 
 .pin--closed .pin-body {
-  fill: var(--c-ink-4);
-  stroke: var(--c-paper-soft);
+  fill: var(--color-rouge);
+  stroke: #ffffff;
+  stroke-width: 1.5;
+}
+
+.pin--permanently-closed .pin-body {
+  fill: #6e6e6e;
+  stroke: rgba(255, 255, 255, 0.55);
   stroke-width: 1.2;
 }
 
-.pin--closed .pin-num {
-  fill: var(--c-paper-soft);
+.pin--permanently-closed .pin-num {
+  fill: rgba(255, 255, 255, 0.85);
 }
 
 .pin--unknown .pin-body {
@@ -355,18 +361,18 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .pin--selected {
-  transform: scale(1.32) translateY(-2px);
+  transform: scale(1.4) translateY(-2px);
   z-index: 700;
 }
 
 .pin--selected .pin-body {
-  fill: var(--color-or);
-  stroke: #ffffff;
-  stroke-width: 2;
+  stroke: var(--color-rouge-bright);
+  stroke-width: 3;
 }
 
-.pin--selected .pin-num {
-  fill: #0a0a0a;
+.pin--selected svg {
+  filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.85))
+    drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
 }
 
 /* ---------- Animations ---------- */

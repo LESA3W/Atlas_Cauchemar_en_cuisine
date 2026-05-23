@@ -9,6 +9,7 @@ type StatusPillProps = {
 const ringStyles: Record<RestaurantStatus, string> = {
   open: "border-or text-or",
   closed: "border-rouge-bright text-rouge-bright",
+  permanently_closed: "border-paper-soft text-paper-mute",
   unknown: "border-paper-ghost text-paper-soft"
 };
 

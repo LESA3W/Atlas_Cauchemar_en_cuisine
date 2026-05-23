@@ -177,8 +177,11 @@ export function RestaurantExplorer({ restaurants }: RestaurantExplorerProps) {
         total={restaurants.length}
         open={totalCounts.open}
         closed={totalCounts.closed}
+        permanentlyClosed={totalCounts.permanentlyClosed}
         filtered={filteredRestaurants.length}
         totalEpisodes={TOTAL_EPISODES_AIRED}
+        activeStatus={status}
+        onStatusChange={(v) => startTransition(() => setStatus(v))}
       />
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />

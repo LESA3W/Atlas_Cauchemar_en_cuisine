@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 
-function Swatch({ tone }: { tone: "open" | "closed" | "selected" }) {
+function Swatch({ tone }: { tone: "open" | "closed" | "permanent" | "selected" }) {
   const colorClass =
     tone === "open"
-      ? "bg-rouge"
+      ? "bg-or"
       : tone === "closed"
-        ? "bg-ink-3 border border-paper-ghost"
-        : "bg-or";
+        ? "bg-rouge"
+        : tone === "permanent"
+          ? "bg-[#6e6e6e]"
+          : "border border-rouge-bright";
   return <span className={`inline-block h-3 w-3 ${colorClass}`} />;
 }
 
@@ -39,12 +41,16 @@ export function Legend() {
               <span>Restaurant ouvert</span>
             </li>
             <li className="flex items-center gap-3">
-              <Swatch tone="selected" />
-              <span>Sélection en cours</span>
+              <Swatch tone="closed" />
+              <span>Fermé temporairement</span>
             </li>
             <li className="flex items-center gap-3">
-              <Swatch tone="closed" />
-              <span>Statut inconnu / fermé</span>
+              <Swatch tone="permanent" />
+              <span>Définitivement fermé</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <Swatch tone="selected" />
+              <span>Sélection en cours</span>
             </li>
           </ul>
           <p className="mt-3 border-t border-rule pt-3 font-display italic text-[11px] text-paper-soft">

@@ -170,8 +170,11 @@ export function FilterBar({
           <Chip active={status === "closed"} onClick={() => onStatusChange("closed")}>
             Fermé
           </Chip>
-          <Chip active={status === "unknown"} onClick={() => onStatusChange("unknown")}>
-            Inconnu
+          <Chip
+            active={status === "permanently_closed"}
+            onClick={() => onStatusChange("permanently_closed")}
+          >
+            Déf. fermé
           </Chip>
         </div>
       </div>

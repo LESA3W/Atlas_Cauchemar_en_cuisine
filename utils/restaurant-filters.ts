@@ -71,14 +71,16 @@ export function filterRestaurants(
 export function countByStatus(restaurants: Restaurant[]) {
   let open = 0;
   let closed = 0;
+  let permanentlyClosed = 0;
   let unknown = 0;
 
   for (const r of restaurants) {
     const s = effectiveStatus(r);
     if (s === "open") open += 1;
     else if (s === "closed") closed += 1;
+    else if (s === "permanently_closed") permanentlyClosed += 1;
     else unknown += 1;
   }
 
-  return { open, closed, unknown };
+  return { open, closed, permanentlyClosed, unknown };
 }
