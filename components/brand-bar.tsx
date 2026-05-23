@@ -10,13 +10,13 @@ type BrandBarProps = {
 };
 
 export function BrandBar({
-  totalRestaurants,
   onOpenAbout,
   onToggleIndex,
   indexOpen
 }: BrandBarProps) {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
+
   return (
     <header className="relative z-[1200] flex h-14 items-center justify-between gap-4 border-b border-rule bg-ink/95 px-3 backdrop-blur md:h-16 md:px-5">
       <div className="flex items-center gap-3 md:gap-4">
@@ -53,6 +53,7 @@ export function BrandBar({
           target="_blank"
           rel="noreferrer"
           className="flex items-center gap-3"
+          aria-label="Voir Cauchemar en cuisine sur M6"
         >
           <img
             src="/images/cauchemar-en-cuisine-logo.png"
@@ -64,13 +65,7 @@ export function BrandBar({
 
       <div className="hidden md:flex flex-col items-center text-center">
         <p className="font-display text-paper text-lg leading-none tracking-tight">
-          L'Atlas
-        </p>
-        <p
-          className="mt-0.5 font-mono text-[9.5px] uppercase text-paper-soft"
-          style={{ letterSpacing: "0.32em" }}
-        >
-          {totalRestaurants} adresses · France & Corse
+          L'Atlas <span className="text-paper-soft">—</span> Cauchemar en cuisine
         </p>
       </div>
 
@@ -110,10 +105,14 @@ export function BrandBar({
           href="https://www.m6.fr/cauchemar-en-cuisine-avec-philippe-etchebest-p_841"
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center bg-rouge px-3 py-1.5 font-mono text-[10px] uppercase text-paper hover:bg-rouge-bright"
+          aria-label="Regarder sur M6"
+          className="inline-flex h-9 items-center justify-center gap-1.5 bg-rouge px-2 font-mono text-[10px] uppercase text-white hover:bg-rouge-bright sm:px-3"
           style={{ letterSpacing: "0.22em" }}
         >
-          Voir M6
+          <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <span className="hidden sm:inline">Regarder sur M6</span>
         </a>
       </div>
     </header>

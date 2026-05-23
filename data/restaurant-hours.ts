@@ -195,7 +195,7 @@ function parseHourCell(value: string) {
     return {
       closed: true,
       known: true,
-      hours: "Ferme"
+      hours: "Fermé"
     };
   }
 

@@ -2,7 +2,6 @@ type StatsBarProps = {
   total: number;
   open: number;
   closed: number;
-  unknown: number;
   filtered: number;
 };
 
@@ -32,13 +31,12 @@ function Cell({
   );
 }
 
-export function StatsBar({ total, open, closed, unknown, filtered }: StatsBarProps) {
+export function StatsBar({ total, open, closed, filtered }: StatsBarProps) {
   return (
     <footer className="relative z-[1200] flex w-full items-stretch overflow-x-auto border-t border-rule-strong bg-ink/95 backdrop-blur thin-scrollbar">
       <Cell label="Adresses" value={total} accent="paper" />
       <Cell label="Ouverts" value={open} accent="or" />
       <Cell label="Fermés" value={closed} accent="rouge" />
-      <Cell label="Inconnus" value={unknown} accent="paper" />
       <Cell label="Résultats" value={filtered} accent="paper" />
     </footer>
   );

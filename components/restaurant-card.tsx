@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { RatingStars } from "@/components/rating-stars";
 import { StatusPill } from "@/components/status-pill";
 import type { Restaurant } from "@/types/restaurant";
@@ -19,13 +18,7 @@ export function RestaurantCard({
   onClose,
   onFocus
 }: RestaurantCardProps) {
-  const [activePhotoIndex, setActivePhotoIndex] = useState(0);
-
-  useEffect(() => {
-    setActivePhotoIndex(0);
-  }, [restaurant.id]);
-
-  const activePhoto = restaurant.photos[activePhotoIndex] ?? restaurant.photos[0];
+  const activePhoto = restaurant.photos[0];
   const hasRealAddress = restaurant.address && restaurant.address.length > 4;
   const mapQuery = hasRealAddress
     ? `${restaurant.address}, ${restaurant.city}`
@@ -72,7 +65,7 @@ export function RestaurantCard({
           type="button"
           onClick={onClose}
           aria-label="Fermer la fiche"
-          className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center border border-paper-ghost bg-ink/70 text-paper backdrop-blur hover:border-rouge hover:bg-rouge"
+          className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center border border-paper-ghost bg-ink/70 text-paper backdrop-blur hover:border-rouge hover:bg-rouge hover:text-white"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24">
             <path d="M6 6 18 18" />
@@ -166,35 +159,6 @@ export function RestaurantCard({
           </div>
         ) : null}
 
-        {restaurant.photos.length > 1 ? (
-          <div className="mt-5 grid gap-2">
-            <p className="eyebrow">Visuels</p>
-            <div className="grid grid-cols-3 gap-2">
-              {restaurant.photos.map((photo, index) => (
-                <button
-                  key={`${restaurant.id}-photo-${index}`}
-                  type="button"
-                  onClick={() => setActivePhotoIndex(index)}
-                  className={`relative aspect-[4/3] overflow-hidden border ${
-                    index === activePhotoIndex
-                      ? "border-rouge"
-                      : "border-rule-strong hover:border-paper-soft"
-                  }`}
-                  aria-label={`Visuel ${index + 1}`}
-                >
-                  <img
-                    src={photo}
-                    alt=""
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : null}
-
         {restaurant.tags && restaurant.tags.length > 0 ? (
           <div className="mt-5 flex flex-wrap gap-1.5">
             {restaurant.tags.map((tag) => (
@@ -215,7 +179,7 @@ export function RestaurantCard({
           <button
             type="button"
             onClick={() => onFocus(restaurant)}
-            className="inline-flex flex-1 items-center justify-center bg-rouge px-4 py-2.5 font-mono text-[10px] uppercase text-paper hover:bg-rouge-bright"
+            className="inline-flex flex-1 items-center justify-center bg-rouge px-4 py-2.5 font-mono text-[10px] uppercase text-white hover:bg-rouge-bright"
             style={{ letterSpacing: "0.22em" }}
           >
             Recentrer la carte

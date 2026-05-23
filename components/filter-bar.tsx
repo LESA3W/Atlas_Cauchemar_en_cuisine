@@ -32,7 +32,7 @@ function Chip({
       onClick={onClick}
       className={`inline-flex items-center whitespace-nowrap border px-3 py-1.5 font-mono text-[10px] uppercase transition ${
         active
-          ? "border-rouge bg-rouge text-paper"
+          ? "border-rouge bg-rouge text-white"
           : "border-rule-strong text-paper-mute hover:border-paper-soft hover:text-paper"
       }`}
       style={{ letterSpacing: "0.22em" }}

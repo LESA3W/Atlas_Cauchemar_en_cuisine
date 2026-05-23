@@ -21,6 +21,22 @@ type RestaurantExplorerProps = {
   dataSourceLabel: string;
 };
 
+const FRENCH_REGIONS = [
+  "Auvergne-Rhône-Alpes",
+  "Bourgogne-Franche-Comté",
+  "Bretagne",
+  "Centre-Val de Loire",
+  "Corse",
+  "Grand Est",
+  "Hauts-de-France",
+  "Île-de-France",
+  "Normandie",
+  "Nouvelle-Aquitaine",
+  "Occitanie",
+  "Pays de la Loire",
+  "Provence-Alpes-Côte d'Azur"
+];
+
 export function RestaurantExplorer({ restaurants }: RestaurantExplorerProps) {
   const [search, setSearch] = useState(defaultRestaurantFilters.query);
   const [region, setRegion] = useState(defaultRestaurantFilters.region);
@@ -62,13 +78,7 @@ export function RestaurantExplorer({ restaurants }: RestaurantExplorerProps) {
     }
   }, [filteredRestaurants, selectedRestaurantId]);
 
-  const regionOptions = useMemo(
-    () =>
-      Array.from(
-        new Set(restaurants.map((r) => r.region).filter(Boolean))
-      ).sort((a, b) => a!.localeCompare(b!, "fr")) as string[],
-    [restaurants]
-  );
+  const regionOptions = FRENCH_REGIONS;
 
   const cityOptions = useMemo(
     () =>
@@ -166,7 +176,6 @@ export function RestaurantExplorer({ restaurants }: RestaurantExplorerProps) {
         total={restaurants.length}
         open={totalCounts.open}
         closed={totalCounts.closed}
-        unknown={totalCounts.unknown}
         filtered={filteredRestaurants.length}
       />
 
