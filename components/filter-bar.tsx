@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { CityAutocomplete } from "@/components/city-autocomplete";
 import type { RestaurantStatus } from "@/types/restaurant";
 
 type FilterBarProps = {
@@ -132,6 +133,8 @@ export function FilterBar({
   onStatusChange,
   onMinRatingChange
 }: FilterBarProps) {
+  const knownCities = useMemo(() => new Set(cityOptions), [cityOptions]);
+
   return (
     <div className="grid gap-4">
       <div className="grid gap-2">
@@ -146,13 +149,12 @@ export function FilterBar({
       </div>
 
       <div className="grid gap-2">
-        <p className="eyebrow">Ville</p>
-        <Dropdown
-          label="Toutes"
+        <p className="eyebrow">Ville / Commune</p>
+        <CityAutocomplete
           value={city}
-          options={cityOptions}
           onChange={onCityChange}
-          placeholder="Toutes villes"
+          knownCities={knownCities}
+          placeholder="Toutes villes — tape pour chercher…"
         />
       </div>
 

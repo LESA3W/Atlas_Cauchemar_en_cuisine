@@ -8,6 +8,7 @@ import { Legend } from "@/components/legend";
 import { RestaurantCard } from "@/components/restaurant-card";
 import { RestaurantListPanel } from "@/components/restaurant-list-panel";
 import { StatsBar } from "@/components/stats-bar";
+import { ThemeProvider } from "@/components/theme-provider";
 import type { Restaurant, RestaurantStatus } from "@/types/restaurant";
 import {
   countByStatus,
@@ -92,6 +93,7 @@ export function RestaurantExplorer({ restaurants }: RestaurantExplorerProps) {
   }
 
   return (
+    <ThemeProvider>
     <div className="flex h-[100dvh] min-h-[640px] flex-col overflow-hidden bg-ink text-paper">
       <BrandBar
         totalRestaurants={restaurants.length}
@@ -170,5 +172,6 @@ export function RestaurantExplorer({ restaurants }: RestaurantExplorerProps) {
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </div>
+    </ThemeProvider>
   );
 }

@@ -9,6 +9,7 @@ import {
   useMap
 } from "react-leaflet";
 import { RestaurantMarker } from "@/components/restaurant-marker";
+import { useTheme } from "@/components/theme-provider";
 import type { Restaurant } from "@/types/restaurant";
 
 type MapClientProps = {
@@ -22,6 +23,9 @@ const FRANCE_BOUNDS: [[number, number], [number, number]] = [
   [41.2, -5.5],
   [51.5, 10.0]
 ];
+
+const TILE_LIGHT = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+const TILE_DARK = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
 
 function ViewportController({
   selectedRestaurant,
@@ -54,6 +58,9 @@ export default function MapClient({
   focusSignal,
   onSelectRestaurant
 }: MapClientProps) {
+  const { theme } = useTheme();
+  const tileUrl = theme === "dark" ? TILE_DARK : TILE_LIGHT;
+
   return (
     <MapContainer
       attributionControl={false}
@@ -70,9 +77,10 @@ export default function MapClient({
       worldCopyJump={false}
     >
       <TileLayer
+        key={tileUrl}
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
         subdomains="abcd"
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        url={tileUrl}
       />
       <AttributionControl position="bottomright" prefix={false} />
       <ZoomControl position="topright" />

@@ -7,3 +7,5 @@ pnpm-debug.log*
 dist
 coverage
 .DS_Store
+
+.vercel
