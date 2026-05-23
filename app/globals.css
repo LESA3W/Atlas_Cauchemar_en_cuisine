@@ -361,18 +361,12 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .pin--selected {
-  transform: scale(1.4) translateY(-2px);
+  transform: scale(1.45) translateY(-3px);
   z-index: 700;
 }
 
-.pin--selected .pin-body {
-  stroke: var(--color-rouge-bright);
-  stroke-width: 3;
-}
-
 .pin--selected svg {
-  filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.85))
-    drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.55));
 }
 
 /* ---------- Animations ---------- */

@@ -95,7 +95,7 @@ export function StatsBar({
         onClick={() => onStatusChange("closed")}
       />
       <Cell
-        label="Déf. fermés"
+        label="Définitivement fermés"
         value={permanentlyClosed}
         accent="grey"
         active={activeStatus === "permanently_closed"}

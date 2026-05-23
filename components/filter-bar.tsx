@@ -174,7 +174,7 @@ export function FilterBar({
             active={status === "permanently_closed"}
             onClick={() => onStatusChange("permanently_closed")}
           >
-            Déf. fermé
+            Définitivement fermé
           </Chip>
         </div>
       </div>

@@ -55,11 +55,13 @@ export function BrandBar({
           className="flex items-center gap-3"
           aria-label="Voir Cauchemar en cuisine sur M6"
         >
-          <img
-            src="/images/cauchemar-en-cuisine-logo.png"
-            alt="Cauchemar en cuisine — logo officiel"
-            className="h-7 w-auto md:h-9"
-          />
+          <span className="inline-flex items-center justify-center bg-[#0a0a0a] px-2 py-1 shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
+            <img
+              src="/images/cauchemar-en-cuisine-logo.png"
+              alt="Cauchemar en cuisine — logo officiel"
+              className="h-6 w-auto md:h-7"
+            />
+          </span>
         </a>
       </div>
 

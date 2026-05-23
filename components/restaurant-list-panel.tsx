@@ -112,9 +112,15 @@ export function RestaurantListPanel({
         }`}
         style={{ top: "var(--bar-top, 56px)", bottom: "var(--bar-bottom, 64px)" }}
       >
-        <div className="border-b border-rule px-5 py-5">
-          <div className="flex items-center justify-between">
-            <p className="eyebrow">Index</p>
+        <div className="border-b border-rule px-5 pb-4 pt-3">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h2 className="font-display text-3xl leading-none text-paper">Sommaire</h2>
+              <p className="mt-1 font-display italic text-sm text-paper-mute">
+                {restaurants.length} restaurant{restaurants.length > 1 ? "s" : ""} affiché
+                {restaurants.length > 1 ? "s" : ""}
+              </p>
+            </div>
             <button
               type="button"
               onClick={onClose}
@@ -127,11 +133,6 @@ export function RestaurantListPanel({
               </svg>
             </button>
           </div>
-          <h2 className="mt-2 font-display text-3xl text-paper">Sommaire</h2>
-          <p className="mt-1 font-display italic text-sm text-paper-mute">
-            {restaurants.length} restaurant{restaurants.length > 1 ? "s" : ""} affiché
-            {restaurants.length > 1 ? "s" : ""}
-          </p>
 
           <div className="mt-4">
             <SearchBar
