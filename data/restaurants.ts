@@ -586,11 +586,13 @@ export const restaurants: Restaurant[] = rawRestaurants
     const hasOpenHours = openingHours.some(
       (entry) => !entry.closed && entry.hours !== "Horaires inconnus"
     );
-    const status: RestaurantStatus = PERMANENTLY_CLOSED_EPISODES.has(seed.episodeNumber)
-      ? "permanently_closed"
-      : hasOpenHours
-        ? "open"
-        : "closed";
+    // Static status: "permanently_closed" if explicitly hidden or no hours data
+    // available; "open" otherwise (live open/closed is computed at runtime from
+    // Paris time + opening hours).
+    const status: RestaurantStatus =
+      PERMANENTLY_CLOSED_EPISODES.has(seed.episodeNumber) || !hasOpenHours
+        ? "permanently_closed"
+        : "open";
 
     return {
       id: `cec-${seed.episodeNumber.toString().padStart(3, "0")}`,

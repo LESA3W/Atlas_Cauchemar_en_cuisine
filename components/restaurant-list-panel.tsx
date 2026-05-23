@@ -107,16 +107,15 @@ export function RestaurantListPanel({
   return (
     <>
       <aside
-        className={`fixed inset-y-0 left-0 z-[1200] flex w-full max-w-[22rem] flex-col border-r border-rule bg-ink-2 transition-transform duration-300 ease-out lg:relative lg:translate-x-0 ${
+        className={`fixed left-0 top-14 bottom-16 z-[1200] flex w-full max-w-[22rem] flex-col border-r border-rule bg-ink-2 transition-transform duration-300 ease-out md:top-16 lg:relative lg:top-auto lg:bottom-auto lg:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
-        style={{ top: "var(--bar-top, 56px)", bottom: "var(--bar-bottom, 64px)" }}
       >
-        <div className="border-b border-rule px-5 pb-4 pt-2">
+        <div className="border-b border-rule px-5 pb-3 pt-3">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <h2 className="font-display text-2xl leading-none text-paper md:text-3xl">Sommaire</h2>
-              <p className="mt-1 font-display italic text-xs text-paper-mute md:text-sm">
+              <h2 className="font-display text-2xl leading-none text-paper">Sommaire</h2>
+              <p className="mt-1 font-display italic text-xs text-paper-mute">
                 {restaurants.length} restaurant{restaurants.length > 1 ? "s" : ""} affiché
                 {restaurants.length > 1 ? "s" : ""}
               </p>

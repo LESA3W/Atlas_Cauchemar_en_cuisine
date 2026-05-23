@@ -10,6 +10,7 @@ import { RestaurantListPanel } from "@/components/restaurant-list-panel";
 import { StatsBar } from "@/components/stats-bar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TOTAL_EPISODES_AIRED } from "@/data/restaurants";
+import { applyLiveStatus } from "@/utils/live-status";
 import type { Restaurant, RestaurantStatus } from "@/types/restaurant";
 import {
   countByStatus,
@@ -38,7 +39,19 @@ const FRENCH_REGIONS = [
   "Provence-Alpes-Côte d'Azur"
 ];
 
-export function RestaurantExplorer({ restaurants }: RestaurantExplorerProps) {
+export function RestaurantExplorer({ restaurants: rawRestaurants }: RestaurantExplorerProps) {
+  const [now, setNow] = useState<Date | null>(null);
+  useEffect(() => {
+    setNow(new Date());
+    const id = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(id);
+  }, []);
+
+  const restaurants = useMemo(
+    () => (now ? applyLiveStatus(rawRestaurants, now) : rawRestaurants),
+    [rawRestaurants, now]
+  );
+
   const [search, setSearch] = useState(defaultRestaurantFilters.query);
   const [region, setRegion] = useState(defaultRestaurantFilters.region);
   const [city, setCity] = useState(defaultRestaurantFilters.city);
