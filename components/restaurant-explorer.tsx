@@ -9,6 +9,7 @@ import { RestaurantCard } from "@/components/restaurant-card";
 import { RestaurantListPanel } from "@/components/restaurant-list-panel";
 import { StatsBar } from "@/components/stats-bar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { TOTAL_EPISODES_AIRED } from "@/data/restaurants";
 import type { Restaurant, RestaurantStatus } from "@/types/restaurant";
 import {
   countByStatus,
@@ -177,6 +178,7 @@ export function RestaurantExplorer({ restaurants }: RestaurantExplorerProps) {
         open={totalCounts.open}
         closed={totalCounts.closed}
         filtered={filteredRestaurants.length}
+        totalEpisodes={TOTAL_EPISODES_AIRED}
       />
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />

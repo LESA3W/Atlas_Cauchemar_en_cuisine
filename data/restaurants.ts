@@ -5,7 +5,6 @@ import type {
 } from "@/types/restaurant";
 import { restaurantAddressByEpisode } from "@/data/restaurant-addresses";
 import {
-  episodesHiddenFromMap,
   restaurantHoursByEpisode,
   unknownOpeningHours
 } from "@/data/restaurant-hours";
@@ -125,6 +124,7 @@ const RAW_RESTAURANT_ROWS = `
 94	Le Relais Sètois[222]	Sète	Hérault	Vendredi 10 octobre 2025[223]
 95	La bonne table de Beussent	Beussent	Pas-de-Calais	Lundi 5 janvier 2026
 96	Le Relais Sètois	Sète	Hérault	Mercredi 18 février 2026
+97	La Sarriette	Médière	Doubs	Mardi 24 mars 2026
 `;
 
 const GEO_ROWS = `
@@ -217,6 +217,7 @@ Criquebeuf-sur-Seine	Eure	49.3057868	1.0965298	Normandie
 Brive-la-Gaillarde	Corrèze	45.1584982	1.5332389	Nouvelle-Aquitaine
 Langeron	Nièvre	46.8105926	3.0845389	Bourgogne-Franche-Comté
 Beussent	Pas-de-Calais	50.5465877	1.7929561	Hauts-de-France
+Médière	Doubs	47.4974	6.6242	Bourgogne-Franche-Comté
 `;
 
 const PHOTO_SETS = [
@@ -552,9 +553,9 @@ export const restaurants: Restaurant[] = rawRestaurants
       hasKnownHours
     };
   })
-  .filter((restaurant) => !episodesHiddenFromMap.includes(restaurant.episodeNumber))
-  .filter((restaurant) => restaurant.status === "open")
   .sort((left, right) => left.episodeNumber - right.episodeNumber);
+
+export const TOTAL_EPISODES_AIRED = 97;
 
 export const restaurantsById = Object.fromEntries(
   restaurants.map((restaurant) => [restaurant.id, restaurant])

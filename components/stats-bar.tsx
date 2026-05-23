@@ -3,6 +3,7 @@ type StatsBarProps = {
   open: number;
   closed: number;
   filtered: number;
+  totalEpisodes: number;
 };
 
 function Cell({
@@ -31,12 +32,12 @@ function Cell({
   );
 }
 
-export function StatsBar({ total, open, closed, filtered }: StatsBarProps) {
+export function StatsBar({ total, open, closed, filtered, totalEpisodes }: StatsBarProps) {
   return (
     <footer className="relative z-[1200] flex w-full items-stretch overflow-x-auto border-t border-rule-strong bg-ink/95 backdrop-blur thin-scrollbar">
-      <Cell label="Adresses" value={total} accent="paper" />
+      <Cell label="Adresses" value={`${open}/${totalEpisodes}`} accent="paper" />
       <Cell label="Ouverts" value={open} accent="or" />
-      <Cell label="Fermés" value={closed} accent="rouge" />
+      <Cell label="Fermés" value={total - open} accent="rouge" />
       <Cell label="Résultats" value={filtered} accent="paper" />
     </footer>
   );
