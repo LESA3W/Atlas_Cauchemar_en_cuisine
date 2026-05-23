@@ -26,15 +26,61 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cauchemar en cuisine — L'Atlas",
+  metadataBase: new URL("https://carte-cauchemar-en-cuisine.vercel.app"),
+  title: {
+    default: "Carte Cauchemar en cuisine — Tous les restaurants de Philippe Etchebest",
+    template: "%s · Carte Cauchemar en cuisine"
+  },
   description:
-    "Atlas éditorial des 96 restaurants visités par Philippe Etchebest dans Cauchemar en cuisine, en France métropolitaine et en Corse.",
+    "Atlas interactif des 97 restaurants visités par Philippe Etchebest dans Cauchemar en cuisine sur M6. France métropolitaine et Corse, statut ouvert/fermé en direct, horaires, adresses, fiches détaillées.",
+  keywords: [
+    "Cauchemar en cuisine",
+    "Philippe Etchebest",
+    "M6",
+    "restaurants",
+    "carte",
+    "France",
+    "atlas",
+    "épisodes",
+    "Etchebest restaurants"
+  ],
+  authors: [{ name: "L'Atlas Cauchemar en cuisine" }],
+  alternates: {
+    canonical: "/"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  },
   openGraph: {
-    title: "Cauchemar en cuisine — L'Atlas",
+    title: "Carte Cauchemar en cuisine — Tous les restaurants de Philippe Etchebest",
     description:
-      "96 adresses, France & Corse. Une carte éditoriale des restaurants de Philippe Etchebest.",
+      "97 adresses, France métropolitaine et Corse. Carte interactive avec statut live, horaires et fiches.",
     locale: "fr_FR",
-    type: "website"
+    type: "website",
+    url: "https://carte-cauchemar-en-cuisine.vercel.app",
+    siteName: "L'Atlas Cauchemar en cuisine",
+    images: [
+      {
+        url: "/images/cauchemar-en-cuisine-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Logo Cauchemar en cuisine — Atlas des restaurants"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Carte Cauchemar en cuisine",
+    description:
+      "97 restaurants de l'émission Cauchemar en cuisine cartographiés en France + Corse, statut live.",
+    images: ["/images/cauchemar-en-cuisine-logo.png"]
   }
 };
 
@@ -49,6 +95,26 @@ export const viewport: Viewport = {
 
 const themeInitScript = `(function(){try{var t=localStorage.getItem('cec-theme');if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Carte Cauchemar en cuisine",
+  alternateName: "L'Atlas Cauchemar en cuisine",
+  url: "https://carte-cauchemar-en-cuisine.vercel.app",
+  description:
+    "Atlas interactif des 97 restaurants visités par Philippe Etchebest dans Cauchemar en cuisine sur M6.",
+  inLanguage: "fr-FR",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate:
+        "https://carte-cauchemar-en-cuisine.vercel.app/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+
 export default function RootLayout({
   children
 }: Readonly<{
@@ -58,6 +124,10 @@ export default function RootLayout({
     <html lang="fr-FR" data-theme="light" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
       </head>
       <body
         className={`${sans.variable} ${display.variable} ${mono.variable} bg-ink text-paper font-sans antialiased`}

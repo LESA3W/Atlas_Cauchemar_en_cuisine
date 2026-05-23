@@ -119,7 +119,7 @@ export function RestaurantListPanel({
             <button
               type="button"
               onClick={() => setExpanded((e) => !e)}
-              className="flex flex-1 items-start gap-3 text-left"
+              className="group flex flex-1 items-center gap-3 text-left"
               aria-expanded={expanded}
               aria-controls="sommaire-filters"
               aria-label={expanded ? "Replier le sommaire" : "Déplier le sommaire"}
@@ -131,16 +131,20 @@ export function RestaurantListPanel({
                   {restaurants.length > 1 ? "s" : ""}
                 </p>
               </div>
-              <svg
-                className={`mt-1 h-4 w-4 shrink-0 text-paper-mute transition-transform duration-200 ${expanded ? "" : "-rotate-180"}`}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                viewBox="0 0 24 24"
+              <span
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-rule-strong text-paper-mute transition group-hover:border-rouge group-hover:bg-ink-3 group-hover:text-paper"
                 aria-hidden="true"
               >
-                <path d="m6 15 6-6 6 6" />
-              </svg>
+                <svg
+                  className={`h-6 w-6 transition-transform duration-200 ${expanded ? "" : "-rotate-180"}`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="m6 15 6-6 6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
             </button>
             <button
               type="button"

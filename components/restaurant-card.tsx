@@ -74,8 +74,7 @@ export function RestaurantCard({
         </button>
 
         <div className="absolute inset-x-4 bottom-4">
-          <p className="eyebrow">Fiche</p>
-          <h2 className="mt-1 font-display text-3xl leading-tight text-paper md:text-4xl">
+          <h2 className="font-display text-3xl leading-tight text-paper md:text-4xl">
             {restaurant.name}
           </h2>
           {restaurant.owner ? (
