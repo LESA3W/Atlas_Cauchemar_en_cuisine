@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
+import { getAllJsonLd } from "@/utils/structured-data";
 
 const display = Playfair_Display({
   subsets: ["latin"],
@@ -95,26 +96,6 @@ export const viewport: Viewport = {
 
 const themeInitScript = `(function(){try{var t=localStorage.getItem('cec-theme');if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
 
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Carte Cauchemar en cuisine",
-  alternateName: "L'Atlas Cauchemar en cuisine",
-  url: "https://carte-cauchemar-en-cuisine.vercel.app",
-  description:
-    "Atlas interactif des 97 restaurants visités par Philippe Etchebest dans Cauchemar en cuisine sur M6.",
-  inLanguage: "fr-FR",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate:
-        "https://carte-cauchemar-en-cuisine.vercel.app/?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
-};
-
 export default function RootLayout({
   children
 }: Readonly<{
@@ -124,10 +105,13 @@ export default function RootLayout({
     <html lang="fr-FR" data-theme="light" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
+        {getAllJsonLd().map((schema, index) => (
+          <script
+            key={`ld-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </head>
       <body
         className={`${sans.variable} ${display.variable} ${mono.variable} bg-ink text-paper font-sans antialiased`}
