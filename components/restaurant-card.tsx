@@ -58,7 +58,7 @@ export function RestaurantCard({
           >
             {formatEpisodeCode(restaurant.episodeNumber)}
           </span>
-          <StatusPill status={restaurant.status} />
+          <StatusPill status={restaurant.status} variant="filled" />
         </div>
 
         <button

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { FilterBar } from "@/components/filter-bar";
 import { SearchBar } from "@/components/search-bar";
 import { StatusPill } from "@/components/status-pill";
@@ -104,6 +105,8 @@ export function RestaurantListPanel({
   onMinRatingChange,
   onSelectRestaurant
 }: RestaurantListPanelProps) {
+  const [expanded, setExpanded] = useState(true);
+
   return (
     <>
       <aside
@@ -113,13 +116,32 @@ export function RestaurantListPanel({
       >
         <div className="border-b border-rule px-5 pb-3 pt-3">
           <div className="flex items-start justify-between gap-3">
-            <div>
-              <h2 className="font-display text-2xl leading-none text-paper">Sommaire</h2>
-              <p className="mt-1 font-display italic text-xs text-paper-mute">
-                {restaurants.length} restaurant{restaurants.length > 1 ? "s" : ""} affiché
-                {restaurants.length > 1 ? "s" : ""}
-              </p>
-            </div>
+            <button
+              type="button"
+              onClick={() => setExpanded((e) => !e)}
+              className="flex flex-1 items-start gap-3 text-left"
+              aria-expanded={expanded}
+              aria-controls="sommaire-filters"
+              aria-label={expanded ? "Replier le sommaire" : "Déplier le sommaire"}
+            >
+              <div className="min-w-0 flex-1">
+                <h2 className="font-display text-2xl leading-none text-paper">Sommaire</h2>
+                <p className="mt-1 font-display italic text-xs text-paper-mute">
+                  {restaurants.length} restaurant{restaurants.length > 1 ? "s" : ""} affiché
+                  {restaurants.length > 1 ? "s" : ""}
+                </p>
+              </div>
+              <svg
+                className={`mt-1 h-4 w-4 shrink-0 text-paper-mute transition-transform duration-200 ${expanded ? "" : "-rotate-180"}`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="m6 15 6-6 6 6" />
+              </svg>
+            </button>
             <button
               type="button"
               onClick={onClose}
@@ -132,30 +154,34 @@ export function RestaurantListPanel({
               </svg>
             </button>
           </div>
+        </div>
 
-          <div className="mt-4">
-            <SearchBar
-              value={search}
-              onChange={onSearchChange}
-              isPending={isFiltering}
-            />
+        {expanded ? (
+          <div id="sommaire-filters">
+            <div className="border-b border-rule px-5 py-4">
+              <SearchBar
+                value={search}
+                onChange={onSearchChange}
+                isPending={isFiltering}
+              />
+            </div>
+
+            <div className="border-b border-rule px-5 py-5">
+              <FilterBar
+                region={region}
+                city={city}
+                status={status}
+                minRating={minRating}
+                regionOptions={regionOptions}
+                cityOptions={cityOptions}
+                onRegionChange={onRegionChange}
+                onCityChange={onCityChange}
+                onStatusChange={onStatusChange}
+                onMinRatingChange={onMinRatingChange}
+              />
+            </div>
           </div>
-        </div>
-
-        <div className="border-b border-rule px-5 py-5">
-          <FilterBar
-            region={region}
-            city={city}
-            status={status}
-            minRating={minRating}
-            regionOptions={regionOptions}
-            cityOptions={cityOptions}
-            onRegionChange={onRegionChange}
-            onCityChange={onCityChange}
-            onStatusChange={onStatusChange}
-            onMinRatingChange={onMinRatingChange}
-          />
-        </div>
+        ) : null}
 
         <div className="flex-1 overflow-y-auto thin-scrollbar">
           {restaurants.length === 0 ? (
