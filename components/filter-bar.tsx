@@ -43,39 +43,39 @@ function Chip({
 }
 
 function Dropdown({
-  label,
   value,
   options,
   onChange,
-  placeholder
+  placeholder,
+  resetLabel
 }: {
-  label: string;
   value: string;
   options: string[];
   onChange: (value: string) => void;
   placeholder: string;
+  resetLabel: string;
 }) {
   const [open, setOpen] = useState(false);
-  const display = value || placeholder;
 
   return (
     <div className="relative">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="inline-flex w-full items-center justify-between gap-3 border border-rule-strong px-3 py-2 text-left font-mono text-[10px] uppercase text-paper-mute hover:border-paper-soft hover:text-paper"
-        style={{ letterSpacing: "0.22em" }}
+        className="inline-flex w-full items-center justify-between gap-3 border border-rule-strong px-3 py-2 text-left hover:border-paper-soft"
       >
         <span className="truncate">
-          <span className="text-or">{label}</span>
-          <span className="mx-2 text-paper-ghost">/</span>
-          <span className={value ? "text-paper" : "text-paper-soft normal-case font-display italic" }>
-            {display}
-          </span>
+          {value ? (
+            <span className="font-sans text-sm text-paper">{value}</span>
+          ) : (
+            <span className="font-display italic text-sm text-paper-soft">
+              {placeholder}
+            </span>
+          )}
         </span>
         <svg
           aria-hidden="true"
-          className={`h-3 w-3 shrink-0 transition ${open ? "rotate-180" : ""}`}
+          className={`h-3 w-3 shrink-0 text-paper-mute transition ${open ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           strokeWidth="1.6"
@@ -97,7 +97,7 @@ function Dropdown({
               className="block w-full border-b border-rule px-3 py-2 text-left font-mono text-[10px] uppercase text-paper-soft hover:bg-ink-3 hover:text-paper"
               style={{ letterSpacing: "0.22em" }}
             >
-              {placeholder}
+              {resetLabel}
             </button>
             {options.map((opt) => (
               <button
@@ -140,21 +140,21 @@ export function FilterBar({
       <div className="grid gap-2">
         <p className="eyebrow">Région</p>
         <Dropdown
-          label="Toutes"
           value={region}
           options={regionOptions}
           onChange={onRegionChange}
-          placeholder="Toutes régions"
+          placeholder="Filtrer par région"
+          resetLabel="Toutes les régions"
         />
       </div>
 
       <div className="grid gap-2">
-        <p className="eyebrow">Ville / Commune</p>
+        <p className="eyebrow">Ville</p>
         <CityAutocomplete
           value={city}
           onChange={onCityChange}
           knownCities={knownCities}
-          placeholder="Toutes villes — tape pour chercher…"
+          placeholder="Filtrer par ville"
         />
       </div>
 

@@ -66,7 +66,7 @@ export function BrandBar({
         </a>
       </div>
 
-      <div className="hidden md:flex flex-col items-center text-center">
+      <div className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center text-center">
         <p className="font-display text-paper text-lg leading-none tracking-tight">
           L'Atlas <span className="text-paper-soft">—</span> Cauchemar en cuisine
         </p>
