@@ -359,6 +359,69 @@ function pickPhotos(episodeNumber: number) {
   return [...PHOTO_SETS[(episodeNumber - 1) % PHOTO_SETS.length]];
 }
 
+export type RestaurantCategory =
+  | "auberge"
+  | "brasserie"
+  | "pizzeria"
+  | "bar"
+  | "grill"
+  | "port"
+  | "bistrot"
+  | "creperie"
+  | "cafe"
+  | "asiatique"
+  | "provencal"
+  | "traditionnel";
+
+const CATEGORY_PHOTOS: Record<RestaurantCategory, string> = {
+  auberge:
+    "https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=1400&q=80",
+  brasserie:
+    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=80",
+  pizzeria:
+    "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1400&q=80",
+  bar:
+    "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=1400&q=80",
+  grill:
+    "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1400&q=80",
+  port:
+    "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=1400&q=80",
+  bistrot:
+    "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1400&q=80",
+  creperie:
+    "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=1400&q=80",
+  cafe:
+    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=80",
+  asiatique:
+    "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1400&q=80",
+  provencal:
+    "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1400&q=80",
+  traditionnel:
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80"
+};
+
+function categorizeRestaurant(name: string): RestaurantCategory {
+  const n = name.toLowerCase();
+  if (/auberge/.test(n)) return "auberge";
+  if (/brasserie/.test(n)) return "brasserie";
+  if (/pizza|pizzer|trattoria/.test(n)) return "pizzeria";
+  if (/\bbar\b|\bpub\b|tavern|estaminet|cabaret/.test(n)) return "bar";
+  if (/grill/.test(n)) return "grill";
+  if (/\bport\b|marine|p[eê]che|chalutier|trinquet/.test(n)) return "port";
+  if (/bistr[oô]/.test(n)) return "bistrot";
+  if (/cr[êe]per/.test(n)) return "creperie";
+  if (/caf[éeè]|café|cafétéria/.test(n)) return "cafe";
+  if (/tha[iï]|asia|japo|sa[iï]gon|vanille|chine/.test(n)) return "asiatique";
+  if (/olivier|provenç|provence/.test(n)) return "provencal";
+  return "traditionnel";
+}
+
+function pickPhotoByCategory(name: string, episodeNumber: number) {
+  const categoryPhoto = CATEGORY_PHOTOS[categorizeRestaurant(name)];
+  const cycle = PHOTO_SETS[(episodeNumber - 1) % PHOTO_SETS.length];
+  return [categoryPhoto, ...cycle];
+}
+
 function pickSpecialty(region: string | undefined, episodeNumber: number) {
   const list = SPECIALTIES_BY_REGION[region ?? ""] ?? [
     "bistrot français",
@@ -551,7 +614,7 @@ export const restaurants: Restaurant[] = rawRestaurants
         specialty,
         renamedTo
       ),
-      photos: pickPhotos(seed.episodeNumber),
+      photos: pickPhotoByCategory(cleanName(seed.rawName), seed.episodeNumber),
       sourceUrl: SOURCE_URL,
       specialty,
       tags: buildTags(seed, specialty, status, renamedTo, notes),
