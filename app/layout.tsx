@@ -59,6 +59,9 @@ export const metadata: Metadata = {
       "max-snippet": -1
     }
   },
+  verification: {
+    google: "apVqKzUenFLVMyt7pQMAWQ7Mln3RTB2XJNqM5AxE7BI"
+  },
   openGraph: {
     title: "Carte Cauchemar en cuisine — Tous les restaurants de Philippe Etchebest",
     description:
