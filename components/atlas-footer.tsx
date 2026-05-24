@@ -40,31 +40,34 @@ export function AtlasFooter({
   return (
     <footer className="relative z-[100] border-t border-rule bg-ink-2 px-5 py-12 md:px-10 md:py-16">
       <div className="mx-auto grid max-w-5xl gap-12">
-        <section className="grid gap-4 border-b border-rule pb-10 text-center md:pb-12">
+        <section className="grid gap-2 border-b border-rule pb-6 text-center md:pb-8">
           <p className="eyebrow">Atlas conçu par</p>
           <a
             href="https://github.com/LESA3W"
             target="_blank"
             rel="noreferrer"
-            className="group mx-auto inline-flex items-baseline gap-3 transition"
+            className="group mx-auto inline-flex items-baseline gap-2"
           >
-            <span className="font-display text-5xl text-paper transition-colors duration-200 group-hover:text-rouge-bright md:text-7xl">
-              Paul{" "}
+            <span className="font-display text-2xl text-paper transition-colors duration-200 group-hover:text-rouge-bright md:text-3xl">
+              <span className="relative inline-block">
+                Paul
+                <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] origin-left scale-x-0 bg-rouge transition-transform duration-300 group-hover:scale-x-100" />
+              </span>{" "}
               <span className="relative inline-block">
                 Chenon
-                <span className="absolute -bottom-1 left-0 right-0 h-[3px] origin-left scale-x-0 bg-rouge transition-transform duration-300 group-hover:scale-x-100" />
+                <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] origin-left scale-x-0 bg-rouge transition-transform duration-300 group-hover:scale-x-100" />
               </span>
             </span>
             <span
-              className="font-mono text-sm uppercase text-paper-soft transition-colors duration-200 group-hover:text-rouge-bright"
-              style={{ letterSpacing: "0.28em" }}
+              className="font-mono text-xs uppercase text-paper-soft transition-colors duration-200 group-hover:text-rouge-bright"
+              style={{ letterSpacing: "0.22em" }}
             >
               ↗
             </span>
           </a>
           <p
-            className="font-mono text-[11px] uppercase text-paper-soft"
-            style={{ letterSpacing: "0.28em" }}
+            className="font-mono text-[10px] uppercase text-paper-soft"
+            style={{ letterSpacing: "0.24em" }}
           >
             Développeur · github.com/LESA3W
           </p>

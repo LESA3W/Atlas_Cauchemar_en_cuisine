@@ -4,30 +4,35 @@ import { useEffect, useState } from "react";
 
 export function ScrollPrompt() {
   const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    // Avoid SSR/hydration mismatch — only show after mount
+    if (dismissed) return;
     setVisible(true);
 
     function onScroll() {
       const maxScroll =
         document.documentElement.scrollHeight - window.innerHeight;
-      // Hide once user has scrolled past the half of the page (bottom half shown)
-      setVisible(maxScroll <= 0 ? true : window.scrollY < maxScroll * 0.5);
+      if (maxScroll > 0 && window.scrollY >= maxScroll * 0.5) {
+        // Hide for good — once user has reached the bottom half, no come-back
+        setDismissed(true);
+        setVisible(false);
+      }
     }
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [dismissed]);
 
   function handleClick() {
+    setDismissed(true);
+    setVisible(false);
     window.scrollTo({
       top: window.innerHeight,
       behavior: "smooth"
     });
   }
 
-  if (!visible) return null;
+  if (!visible || dismissed) return null;
 
   return (
     <button
