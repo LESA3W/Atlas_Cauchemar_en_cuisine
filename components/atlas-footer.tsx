@@ -221,7 +221,8 @@ export function AtlasFooter({
               >
                 Paul Chenon (LESA3W)
               </a>{" "}
-              — code ouvert sous licence MIT.
+              — code source disponible pour usage local uniquement, déploiement
+              public interdit sans autorisation.
             </li>
             <li>
               <strong className="text-paper">Mention légale</strong> · projet indépendant

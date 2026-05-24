@@ -1,31 +1,93 @@
-MIT License
+Atlas Cauchemar en cuisine — Personal Local-Use License
 
-Copyright (c) 2026 LESA3W
+Copyright (c) 2026 Paul Chenon (https://github.com/LESA3W)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+All rights reserved.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+================================================================================
+
+GRANTED PERMISSIONS
+
+Subject to the restrictions below, any individual is permitted to:
+
+  1. View the source code of this repository on GitHub for educational,
+     informational, or curiosity purposes.
+
+  2. Clone the repository and run the software ON THEIR OWN LOCAL MACHINE
+     (developer workstation, personal laptop) for private exploration,
+     learning, or evaluation.
+
+================================================================================
+
+EXPRESSLY PROHIBITED
+
+The following uses are STRICTLY FORBIDDEN without prior written authorization
+from the copyright holder:
+
+  1. PUBLIC DEPLOYMENT — hosting, deploying, mirroring, exposing, serving,
+     or otherwise making this software accessible on any publicly reachable
+     URL, including but not limited to: web hosting providers, cloud platforms
+     (Vercel, Netlify, AWS, GCP, Azure, Cloudflare, Fly.io, Render, etc.),
+     CDNs, VPS, dedicated servers, peer-to-peer networks, or any network
+     endpoint reachable from the public internet.
+
+  2. PUBLIC REDISTRIBUTION — re-uploading, re-publishing, mirroring, forking
+     beyond GitHub's standard archival fork mechanism, or otherwise making
+     copies of this software available to third parties through any public
+     channel (websites, archives, marketplaces, package registries).
+
+  3. COMMERCIAL USE — using this software, in whole or in part, modified or
+     unmodified, in any product, service, offering, demonstration, or activity
+     that generates revenue, attracts customers, or supports a commercial
+     endeavor.
+
+  4. DERIVATIVE WORKS PUBLISHED ONLINE — creating modified versions of this
+     software and publishing or deploying those derivative works on the
+     public internet under any name.
+
+  5. REMOVAL OF ATTRIBUTION — removing, obscuring, or modifying the copyright
+     notices, the author attribution to Paul Chenon, the link to
+     https://github.com/LESA3W, or this license file itself.
+
+================================================================================
+
+OFFICIAL DEPLOYMENT
+
+The sole authorized public deployment of this software is operated by the
+copyright holder at:
+
+  https://carte-cauchemar-en-cuisine.vercel.app
+
+Any other public deployment is unauthorized and constitutes a violation of
+this license.
+
+================================================================================
+
+DATA ATTRIBUTION
+
+Restaurant data contained in this repository is derived from the French
+Wikipedia article "Cauchemar en cuisine (France)"
+(https://fr.wikipedia.org/wiki/Cauchemar_en_cuisine_(France)) and is provided
+under the Creative Commons Attribution-ShareAlike 3.0 license
+(https://creativecommons.org/licenses/by-sa/3.0/). The names "Cauchemar en
+cuisine", "M6", "Studio 89 Productions", and "Philippe Etchebest" are
+referenced for descriptive purposes only; all trademarks and related rights
+belong to their respective owners. This atlas is an independent, non-official,
+documentary project with no commercial affiliation.
+
+================================================================================
+
+DISCLAIMER
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR OR COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
----
+================================================================================
 
-NOTICE: This repository contains data extracted from the Wikipedia article
-"Cauchemar en cuisine (France)" (https://fr.wikipedia.org/wiki/Cauchemar_en_cuisine_(France)),
-which is licensed under CC BY-SA 3.0. The names "Cauchemar en cuisine",
-"M6", "Studio 89 Productions" and "Philippe Etchebest" are mentioned for
-descriptive purposes only; all trademarks and related rights belong to
-their respective owners. This atlas is an independent, non-official,
-documentary project with no commercial affiliation.
+For permission requests beyond the scope of this license, contact the author
+through GitHub: https://github.com/LESA3W

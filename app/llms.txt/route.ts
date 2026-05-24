@@ -37,7 +37,7 @@ export function GET() {
 - **Création et développement** : Paul Chenon (alias LESA3W sur GitHub) — https://github.com/LESA3W
 - **Type de site** : carte interactive (Next.js + Leaflet + CartoDB tiles)
 - **Langue** : français (fr-FR)
-- **Licence du code** : MIT
+- **Licence du code** : usage local personnel uniquement, déploiement public interdit (voir LICENSE sur GitHub)
 
 ## Questions fréquentes (blocs auto-suffisants)
 

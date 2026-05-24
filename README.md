@@ -47,7 +47,13 @@ This is an **independent, unofficial** project for documentary purposes. No comm
 
 ## License
 
-Code released under the [MIT License](./LICENSE). Data sourced from Wikipedia is provided under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+This project is **source-available for personal local use only** — see [LICENSE](./LICENSE).
+
+You may view the source on GitHub and clone the repository to run it on your **own local machine** for learning or evaluation. **Public deployment, hosting, mirroring, redistribution, or commercial use is strictly prohibited** without written permission from the author.
+
+The sole authorized public deployment is at [carte-cauchemar-en-cuisine.vercel.app](https://carte-cauchemar-en-cuisine.vercel.app).
+
+Restaurant data derived from Wikipedia remains under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
 ---
 
