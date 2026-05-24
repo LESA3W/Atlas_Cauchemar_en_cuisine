@@ -299,7 +299,8 @@ function normalizeText(value: string) {
     .replace(/\(\s+/g, "(")
     .replace(/\s+\)/g, ")")
     .trim()
-    .replace(/,$/, "");
+    .replace(/[,\s]+$/g, "")
+    .trim();
 }
 
 function slugify(value: string) {

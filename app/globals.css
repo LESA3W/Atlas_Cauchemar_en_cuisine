@@ -78,8 +78,8 @@
 }
 
 html {
-  overflow: hidden;
   background: var(--c-ink);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -87,7 +87,6 @@ body {
   background: var(--c-ink);
   color: var(--c-paper);
   font-family: var(--font-sans);
-  overflow: hidden;
   position: relative;
   transition: background-color 220ms ease, color 220ms ease;
 }

@@ -1,6 +1,8 @@
 import { restaurants, TOTAL_EPISODES_AIRED } from "@/data/restaurants";
 
 const SITE = "https://carte-cauchemar-en-cuisine.vercel.app";
+const GITHUB = "https://github.com/LESA3W/Atlas_Cauchemar_en_cuisine";
+const LAST_BUILD = new Date().toISOString();
 
 const websiteSchema = {
   "@context": "https://schema.org",
@@ -12,6 +14,8 @@ const websiteSchema = {
   description:
     "Atlas interactif des 97 restaurants visités par Philippe Etchebest dans Cauchemar en cuisine sur M6, France métropolitaine et Corse.",
   inLanguage: "fr-FR",
+  dateModified: LAST_BUILD,
+  publisher: { "@id": `${SITE}#organization` },
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -22,12 +26,30 @@ const websiteSchema = {
   }
 };
 
+const curatorSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE}#curator`,
+  name: "LESA3W",
+  url: GITHUB,
+  sameAs: [GITHUB],
+  description:
+    "Curateur indépendant de l'Atlas Cauchemar en cuisine. Compilation et maintenance des données issues de sources publiques (Wikipédia, M6, vérifications manuelles)."
+};
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": `${SITE}#organization`,
   name: "L'Atlas Cauchemar en cuisine",
+  alternateName: "Carte Cauchemar en cuisine",
   url: SITE,
+  sameAs: [
+    GITHUB,
+    "https://fr.wikipedia.org/wiki/Cauchemar_en_cuisine_(France)",
+    "https://www.m6.fr/cauchemar-en-cuisine-avec-philippe-etchebest-p_841"
+  ],
+  founder: { "@id": `${SITE}#curator` },
   logo: {
     "@type": "ImageObject",
     url: `${SITE}/images/cauchemar-en-cuisine-logo.png`,
@@ -41,6 +63,7 @@ const organizationSchema = {
 const tvSeriesSchema = {
   "@context": "https://schema.org",
   "@type": "TVSeries",
+  "@id": `${SITE}#tvseries`,
   name: "Cauchemar en cuisine",
   alternateName: "Cauchemar en cuisine avec Philippe Etchebest",
   countryOfOrigin: { "@type": "Country", name: "France" },
@@ -55,23 +78,40 @@ const tvSeriesSchema = {
     "@type": "PublicationEvent",
     publishedBy: { "@type": "Organization", name: "M6", url: "https://www.m6.fr" }
   },
-  actor: {
-    "@type": "Person",
-    name: "Philippe Etchebest",
-    jobTitle: "Chef cuisinier",
-    nationality: "France"
-  },
+  actor: [
+    {
+      "@type": "Person",
+      name: "Philippe Etchebest",
+      jobTitle: "Chef cuisinier",
+      nationality: "France",
+      sameAs: ["https://fr.wikipedia.org/wiki/Philippe_Etchebest"]
+    }
+  ],
   genre: ["Téléréalité", "Cuisine", "Gastronomie"],
   url: "https://www.m6.fr/cauchemar-en-cuisine-avec-philippe-etchebest-p_841"
+};
+
+const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE}#collection`,
+  url: SITE,
+  name: "Carte des restaurants Cauchemar en cuisine",
+  description:
+    "Collection complète des 97 restaurants visités par Philippe Etchebest dans Cauchemar en cuisine, géolocalisés sur une carte interactive avec statut d'ouverture en direct.",
+  inLanguage: "fr-FR",
+  isPartOf: { "@id": `${SITE}#website` },
+  about: { "@id": `${SITE}#tvseries` },
+  author: { "@id": `${SITE}#curator` },
+  dateModified: LAST_BUILD,
+  mainEntity: { "@id": `${SITE}#restaurants` }
 };
 
 function buildItemList() {
   const items = restaurants
     .filter((r) => r.status !== "permanently_closed")
-    .map((r, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
+    .map((r, index) => {
+      const restaurant: Record<string, unknown> = {
         "@type": "Restaurant",
         "@id": `${SITE}#restaurant-${r.id}`,
         name: r.name,
@@ -86,25 +126,25 @@ function buildItemList() {
           latitude: r.lat,
           longitude: r.lng
         },
-        url: SITE,
-        identifier: `episode-${r.episodeNumber}`,
-        aggregateRating: r.rating
-          ? {
-              "@type": "AggregateRating",
-              ratingValue: r.rating.toFixed(1),
-              bestRating: "5",
-              worstRating: "0",
-              ratingCount: 1
-            }
-          : undefined
+        identifier: `episode-${r.episodeNumber}`
+      };
+
+      if (r.address && r.address.length > 4 && !/à confirmer/i.test(r.address)) {
+        (restaurant.address as Record<string, string>).streetAddress = r.address;
       }
-    }));
+
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        item: restaurant
+      };
+    });
 
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${SITE}#restaurants`,
-    name: "Restaurants de Cauchemar en cuisine",
+    name: "Restaurants de Cauchemar en cuisine encore en activité",
     description:
       "Liste des restaurants encore en activité visités par Philippe Etchebest dans Cauchemar en cuisine sur M6.",
     numberOfItems: items.length,
@@ -160,31 +200,13 @@ const faqSchema = {
   ]
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Accueil",
-      item: SITE
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Carte des restaurants Cauchemar en cuisine",
-      item: SITE
-    }
-  ]
-};
-
 export function getAllJsonLd() {
   return [
     websiteSchema,
+    curatorSchema,
     organizationSchema,
     tvSeriesSchema,
-    breadcrumbSchema,
+    collectionPageSchema,
     faqSchema,
     buildItemList()
   ];
