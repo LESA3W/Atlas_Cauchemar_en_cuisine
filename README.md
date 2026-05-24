@@ -1,4 +1,4 @@
-# 🍽️ Atlas — Cauchemar en cuisine
+# 🍽️ Atlas - Cauchemar en cuisine
 
 Interactive atlas of the **97 restaurants** featured by chef **Philippe Etchebest** in the French TV show *Cauchemar en cuisine* on **M6** since April 18, 2011. Live open/closed status (computed in real time against Europe/Paris), region and city filters (autocompletion across every French commune), light/dark theme, detailed restaurant cards.
 
