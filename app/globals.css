@@ -80,6 +80,7 @@
 html {
   background: var(--c-ink);
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -88,6 +89,7 @@ body {
   color: var(--c-paper);
   font-family: var(--font-sans);
   position: relative;
+  overflow-x: hidden;
   transition: background-color 220ms ease, color 220ms ease;
 }
 
@@ -409,6 +411,23 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .anim-fade {
   animation: fade-in 240ms ease both;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.scroll-prompt-icon {
+  animation: scroll-bounce 1.6s ease-in-out infinite;
+}
+
+.scroll-prompt {
+  animation: fade-in 600ms ease both;
 }
 
 :focus-visible {

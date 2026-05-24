@@ -1,12 +1,12 @@
 "use client";
 
 import { useDeferredValue, useEffect, useMemo, useState, useTransition } from "react";
-import { AboutModal } from "@/components/about-modal";
 import { BrandBar } from "@/components/brand-bar";
 import { FranceMap } from "@/components/france-map";
 import { Legend } from "@/components/legend";
 import { RestaurantCard } from "@/components/restaurant-card";
 import { RestaurantListPanel } from "@/components/restaurant-list-panel";
+import { ScrollPrompt } from "@/components/scroll-prompt";
 import { StatsBar } from "@/components/stats-bar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TOTAL_EPISODES_AIRED } from "@/data/restaurants";
@@ -63,7 +63,6 @@ export function RestaurantExplorer({ restaurants: rawRestaurants }: RestaurantEx
   );
   const [selectedRestaurantId, setSelectedRestaurantId] = useState<string | null>(null);
   const [indexOpen, setIndexOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
   const [focusSignal, setFocusSignal] = useState(0);
   const [isPending, startTransition] = useTransition();
   const deferredSearch = useDeferredValue(search);
@@ -121,7 +120,6 @@ export function RestaurantExplorer({ restaurants: rawRestaurants }: RestaurantEx
     <div className="flex h-[100dvh] min-h-[640px] flex-col overflow-hidden bg-ink text-paper">
       <BrandBar
         totalRestaurants={restaurants.length}
-        onOpenAbout={() => setAboutOpen(true)}
         onToggleIndex={() => setIndexOpen((o) => !o)}
         indexOpen={indexOpen}
       />
@@ -197,7 +195,7 @@ export function RestaurantExplorer({ restaurants: rawRestaurants }: RestaurantEx
         onStatusChange={(v) => startTransition(() => setStatus(v))}
       />
 
-      <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
+      <ScrollPrompt />
     </div>
     </ThemeProvider>
   );

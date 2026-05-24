@@ -4,16 +4,11 @@ import { useTheme } from "@/components/theme-provider";
 
 type BrandBarProps = {
   totalRestaurants: number;
-  onOpenAbout: () => void;
   onToggleIndex: () => void;
   indexOpen: boolean;
 };
 
-export function BrandBar({
-  onOpenAbout,
-  onToggleIndex,
-  indexOpen
-}: BrandBarProps) {
+export function BrandBar({ onToggleIndex, indexOpen }: BrandBarProps) {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
 
@@ -89,20 +84,6 @@ export function BrandBar({
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
             </svg>
           )}
-        </button>
-        <button
-          type="button"
-          onClick={onOpenAbout}
-          aria-label="Ouvrir le colophon"
-          className="inline-flex h-9 items-center justify-center border border-rule-strong px-2 font-mono text-[10px] uppercase text-paper-mute hover:border-rouge hover:text-paper sm:px-3"
-          style={{ letterSpacing: "0.22em" }}
-        >
-          <svg className="h-4 w-4 sm:hidden" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M12 8h.01" />
-            <path d="M11 12h1v4h1" />
-          </svg>
-          <span className="hidden sm:inline">Colophon</span>
         </button>
         <a
           href="https://www.m6.fr/cauchemar-en-cuisine-avec-philippe-etchebest-p_841"
