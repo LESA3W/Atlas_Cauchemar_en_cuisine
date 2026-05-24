@@ -42,13 +42,13 @@ export function AtlasFooter({
       <div className="mx-auto grid max-w-5xl gap-12">
         <section className="grid gap-2 border-b border-rule pb-6 text-center md:pb-8">
           <p className="eyebrow">Atlas conçu par</p>
-          <a
-            href="https://github.com/LESA3W"
-            target="_blank"
-            rel="noreferrer"
-            className="group mx-auto inline-flex items-baseline gap-2"
-          >
-            <span className="font-display text-2xl text-paper transition-colors duration-200 group-hover:text-rouge-bright md:text-3xl">
+          <div className="flex justify-center">
+            <a
+              href="https://github.com/LESA3W"
+              target="_blank"
+              rel="noreferrer"
+              className="group relative inline-block font-display text-2xl text-paper transition-colors duration-200 hover:text-rouge-bright md:text-3xl"
+            >
               <span className="relative inline-block">
                 Paul
                 <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] origin-left scale-x-0 bg-rouge transition-transform duration-300 group-hover:scale-x-100" />
@@ -57,14 +57,15 @@ export function AtlasFooter({
                 Chenon
                 <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] origin-left scale-x-0 bg-rouge transition-transform duration-300 group-hover:scale-x-100" />
               </span>
-            </span>
-            <span
-              className="font-mono text-xs uppercase text-paper-soft transition-colors duration-200 group-hover:text-rouge-bright"
-              style={{ letterSpacing: "0.22em" }}
-            >
-              ↗
-            </span>
-          </a>
+              <span
+                className="absolute left-full top-1/2 ml-2 -translate-y-1/2 font-mono text-xs uppercase text-paper-soft transition-colors duration-200 group-hover:text-rouge-bright"
+                style={{ letterSpacing: "0.22em" }}
+                aria-hidden="true"
+              >
+                ↗
+              </span>
+            </a>
+          </div>
           <p
             className="font-mono text-[10px] uppercase text-paper-soft"
             style={{ letterSpacing: "0.24em" }}
