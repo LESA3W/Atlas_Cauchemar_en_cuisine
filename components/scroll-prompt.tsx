@@ -10,12 +10,12 @@ export function ScrollPrompt() {
     setVisible(true);
 
     function onScroll() {
-      if (window.scrollY > 80) {
-        setVisible(false);
-      } else {
-        setVisible(true);
-      }
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      // Hide once user has scrolled past the half of the page (bottom half shown)
+      setVisible(maxScroll <= 0 ? true : window.scrollY < maxScroll * 0.5);
     }
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

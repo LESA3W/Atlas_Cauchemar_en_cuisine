@@ -30,11 +30,13 @@ const curatorSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   "@id": `${SITE}#curator`,
-  name: "LESA3W",
-  url: GITHUB,
-  sameAs: [GITHUB],
+  name: "Paul Chenon",
+  alternateName: "LESA3W",
+  url: "https://github.com/LESA3W",
+  sameAs: ["https://github.com/LESA3W", GITHUB],
+  jobTitle: "Développeur web",
   description:
-    "Curateur indépendant de l'Atlas Cauchemar en cuisine. Compilation et maintenance des données issues de sources publiques (Wikipédia, M6, vérifications manuelles)."
+    "Créateur et développeur indépendant de l'Atlas Cauchemar en cuisine. Compilation et maintenance des données issues de sources publiques (Wikipédia, M6, vérifications manuelles)."
 };
 
 const organizationSchema = {
